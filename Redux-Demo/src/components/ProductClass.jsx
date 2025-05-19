@@ -1,18 +1,24 @@
-import React, { useEffect } from "react";
+import React, {Component} from "react";
 import { fetchProducts } from "../redux/actions/action";
-import { useDispatch, useSelector } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { connect } from "react-redux";
 
-const ProductList = () => {
-  const dispatch = useDispatch();
+class ProductList extends Component {
+  componentDidMount() {
+    this.props.fetchProducts();
+  }
 
-  const { products, filter, loading } = useSelector((state) => state);
+  componentDidUpdate(prevProps) {
+    if (prevProps.filter !== this.props.filter) {
+      this.props.fetchProducts();
+    }
+  }
 
-  useEffect(() => {
-    dispatch(fetchProducts());
-  }, [filter]);
+render(){
 
-  const filteredProducts =
+    const { products, filter, loading } = this.props
+
+    const filteredProducts =
     filter === "all"
       ? products
       : products.filter((product) => product.category === filter);
@@ -26,7 +32,6 @@ const ProductList = () => {
       </div>
     );
   }
-
   return (
     <div className="container">
       <div className="row">
@@ -51,5 +56,16 @@ const ProductList = () => {
     </div>
   );
 };
+}
 
-export default ProductList;
+const mapStateToProps = (state) => ({
+  products: state.products,
+  filter: state.filter,
+  loading: state.loading,
+});
+
+const mapDispatchToProps = {
+  fetchProducts,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductList);
