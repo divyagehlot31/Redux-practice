@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext} from "react";
 import { fetchProducts } from "../redux/actions/action";
 import { useDispatch, useSelector } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 const ProductList = () => {
   const dispatch = useDispatch();
@@ -17,6 +18,9 @@ const ProductList = () => {
       ? products
       : products.filter((product) => product.category === filter);
 
+      const {Theme} = useContext(ThemeContext)
+      
+
   if (loading) {
     return (
       <div className="d-flex justify-content-center align-items-center min-vh-100">
@@ -26,13 +30,15 @@ const ProductList = () => {
       </div>
     );
   }
+    const cardClass = Theme === "dark" ? "bg-dark text-light border-light" : "bg-white text-dark";
+
 
   return (
     <div className="container">
       <div className="row">
         {filteredProducts.map((product) => (
           <div className="col-md-3 mb-4" key={product.id}>
-            <div className="card h-100">
+            <div className={`card h-100 ${cardClass}`}>
               <img
                 src={product.image}
                 className="card-img-top p-3"

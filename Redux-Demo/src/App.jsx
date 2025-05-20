@@ -1,3 +1,32 @@
+import React  from "react";
+import { RouterProvider } from "react-router-dom";
+// import "./App.css";
+import router from "./routes/Router";
+import { AppContextProvider, ThemeContext} from "./contexts/ThemeContext";
+
+// import { ThemeContext } from "./contexts/ThemeContext";
+
+  // const { Theme } = useContext(ThemeContext);
+
+const App = ()=> {
+  // const {Theme} = useContext(ThemeContext)
+
+
+  return (
+  <AppContextProvider>
+
+      <RouterProvider router={router} />;
+        </AppContextProvider>
+
+
+  )
+}
+
+export default App;
+
+
+
+
 // import React, {Component} from "react";
 // import FilterClass from "./components/FilterClass";
 // import ProductClass from "./components/ProductClass";
@@ -27,12 +56,4 @@
 // }
 
 // export default App;
-import React from "react";
-import { RouterProvider } from "react-router-dom";
-import "./App.css";
-import router from "./routes/Router";
-function App() {
-  return <RouterProvider router={router} />;
-}
 
-export default App;
