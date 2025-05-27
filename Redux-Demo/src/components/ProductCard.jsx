@@ -6,7 +6,7 @@ const ProductCard = ({
   handleAddToCart,
   handleIncrease,
   handleDecrease,
-  handleRemove,
+  // handleRemove,
   cardClass,
 }) => {
   return (
@@ -49,12 +49,12 @@ const ProductCard = ({
                   +
                 </button>
               </div>
-              <button
+              {/* <button
                 className="btn btn-danger btn-sm"
                 onClick={() => handleRemove(cartProduct.id)}
               >
                 Remove
-              </button>
+              </button> */}
             </>
           )}
         </div>

@@ -30,14 +30,25 @@ const Navbar = () => {
         <NavLink className="nav-link" to="/contact">
           Contact
         </NavLink>
-        <button
+        {/* <button
           onClick={toggleTheme}
           className={`btn btn-sm border-0 ms-3 fw-bold ${
             Theme === "dark" ? "text-light" : "text-dark"
           }`}
         >
           Toggle
-        </button>
+        </button> */}
+
+        <button
+  onClick={toggleTheme}
+  className={`btn btn-sm border-0 ms-3 ${
+    Theme === "dark" ? "text-light" : "text-dark"
+  }`}
+  title="Toggle Theme"
+>
+  {Theme === "dark" ? "🌞" : "🌙"}
+</button>
+
       </div>
       {<CartIcon/>}
     </nav>
